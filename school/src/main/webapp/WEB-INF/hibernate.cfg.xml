@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="hibernate.dialect">${hibernateDialect}</prop>
+				<!-- <prop key="hibernate.connection.driver_class">${driverClassName}</prop> -->
+				<!-- <prop key="hibernate.current_session_context_class">thread -->
+				<!-- </prop>org.hibernate.context.internal.ThreadLocalSessionContext -->
+				<prop key="hibernate.connection.isolation">2</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+				<prop key="hibernate.connection.release_mode">after_transaction</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dbcp.initialSize">40</prop>
+				<prop key="hibernate.dbcp.maxActive">200</prop>
+				<prop key="hibernate.dbcp.maxIdle">500</prop>
+				<prop key="hibernate.dbcp.minIdle">20</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>school.dto.Classes</value>
+				<value>school.dto.Parent</value>
+				<value>school.dto.School</value>
+				<value>school.dto.Student</value>
+				<value>school.dto.Teacher</value>
+			</list>
+		</property>
+	</bean>
+
+
+</beans>
